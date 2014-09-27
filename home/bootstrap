@@ -1,0 +1,83 @@
+#!/bin/bash
+# $HOME/bin/bootstrap - jeff@jrhorn.me
+# A script to bootstrap new boxes with personal dotfiles.
+
+# redirect all following output to bootstrap.log as well as screen
+# exit early with warning unless sudo, or get sudo like .osx does
+
+# set env vars about darwin and ubuntu
+
+# get vars from user input:
+#
+#   - passphrase for new RSA key, or press enter for random key, then print
+#     key to screen
+
+# if mac
+# continue if any key: Run software update to install latest OSX packages
+# continue if any key: Download and install Xcode
+# accept Xcode license agreement
+sudo xcodebuild -license
+# install Xcode command line tools
+sudo xcode-select --install
+# install homebrew without interaction
+# ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)”
+# Install brew packages, redirect to brew.log
+# brew doctor
+# brew update
+# brew install zsh
+
+# sed: Add `/usr/local/bin/zsh` to the top of `/etc/shells`
+# sed: Add `/usr/local/bin` to the top of `/etc/paths`
+
+# if ubuntu
+sudo apt-get udpate
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+# install compile tools (build-common and friends)
+sudo apt-get install zsh
+
+# all systems
+# switch login shell to zsh
+sudo chsh -s /usr/local/bin/zsh && chsh -s /usr/local/bin/zsh
+# install homeshick
+git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick && source $HOME/.homesick/repos/homeshick/homeshick.sh
+homeshick clone jrhorn424/bin jrhorn424/dotfiles  jrhorn424/git jrhorn424/ruby jrhorn424/vim jrhorn424/tmux
+# if mac: homeshick clone jrhorn424/mac
+
+# build latest ruby and make default
+
+# this will only work for the default ruby
+# run this again in a new shell, which should activate latest ruby
+# gem update --system && gem install bundler
+
+# if mac: cd $HOME && brew bundle Brewfile
+# ubuntu analog?
+
+# generate new key
+
+# Be sure to review output for important caveats or errors.
+#
+# Put key on clipboard.
+# Upload new key to github.
+#
+# In a new shell, run
+#
+#     gem update --system && gem install bundler
+#
+# Then, install vim and macvim:
+#
+#     brew install vim
+#     brew install macvim
+# or
+#
+#     sudo apt-get install vim
+#
+# Install gems
+# use infect to install vim dependencies
+# compile vimproc
+# Install any purchased software from App Store
+# Download solarized colorscheme and install for terminal emulators:
+#
+#   - iTerm2
+#   - Terminal.app
+#   - ubuntu CLI (Xcolors?)
