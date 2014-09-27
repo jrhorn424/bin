@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+#
+# Unclutter home
+#
+find $HOME -name ".DS_Store" -depth -exec rm {} \;
+find $HOME -name "Thumbs.db" -depth -exec rm {} \;
+find $HOME -name ".AppleD*" -depth -exec rm {} \;

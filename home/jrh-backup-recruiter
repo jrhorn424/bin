@@ -1,0 +1,8 @@
+# Backup recruiter project directory
+
+PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
+
+cd $HOME/projects/ices-recruiter
+
+tar -cjf recruiter.$(date +%Y%m%d%H%M%S).tar.bz2 recruiter
+find ./ -maxdepth 1 -name "recruiter*.tar.bz2" | ghead -n -5 | xargs rm
