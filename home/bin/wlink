@@ -1,0 +1,7 @@
+#!/bin/bash
+#
+# Usage:
+#
+#    wlink <search_path> : Remove stale symlinks from search_path
+
+find -maxdepth 1 -L $1 -type l -delete
