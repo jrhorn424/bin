@@ -1,0 +1,17 @@
+#!/bin/sh
+
+echo "Are you sure? You will destroy this branch's history and lose any local " \
+"changes. Press any key to continue."
+read
+
+target=$1
+
+git checkout -b $target
+git checkout -b temp
+git branch -D $target
+git checkout --orphan $target
+git rm -rf .
+git branch -D temp
+touch .keep
+git add .keep
+git commit -m "Initial commit"
