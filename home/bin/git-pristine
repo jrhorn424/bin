@@ -6,12 +6,12 @@ read
 
 target=$1
 
-git checkout -b $target
+git checkout $target
 git checkout -b temp
-git branch -D $target
+git branch -d $target
 git checkout --orphan $target
 git rm -rf .
-git branch -D temp
+git branch -d temp
 touch .keep
 git add .keep
 git commit -m "Initial commit"
